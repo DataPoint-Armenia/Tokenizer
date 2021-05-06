@@ -11,11 +11,16 @@ A fork of [Armtreebank/Tokenizer](https://github.com/Armtreebank/Tokenizer) adap
 
 ## Changes
 
-- todo
+- [[d870d29](https://github.com/sourencho/ungroup_game/commit/d870d299e596e6ec8c91feaf2effd789a7c49456)] Add option to not tokenize numbers, foreign words, punctuation and some misc stuff.
+  - Only words are tokenized by default.
+  - The intent of this change is to use this tokenizer to parse out n-grams.
 
 ## Usage
 
-- todo
+You can demo the tokenizer by modifying the string in `test.py` and running it:
+```
+python3 test.py
+```
 
 # Original readme
 

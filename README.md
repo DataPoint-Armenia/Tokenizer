@@ -1,4 +1,23 @@
-# Tokenization
+# vortan_tokenizer
+
+## About
+
+A fork of [https://github.com/Armtreebank/Tokenizer](Armtreebank/Tokenizer) adapted for the vortan project.
+
+## Documentation
+
+- **Google Drive Folder**: [link](https://drive.google.com/drive/folders/1f1feyB_po6hS7TFvdvPWZ3Q6dSEDjklQ)
+- **Slack Channel**: [#vortan](https://datapointarmenia.slack.com/archives/C01LE2ADLFJ)
+
+## Changes
+
+- todo
+
+## Usage
+
+- todo
+
+# Original readme
 
 The low-level tokenization of the Eastern Armenian UD treebank follows the tokenization of the
 [Հայերենի ծառադարան - Eastern Armenian Treebank](http://armtreebank.yerevann.com/):

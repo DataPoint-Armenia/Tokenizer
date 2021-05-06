@@ -2,7 +2,7 @@
 
 ## About
 
-A fork of [https://github.com/Armtreebank/Tokenizer](Armtreebank/Tokenizer) adapted for the vortan project.
+A fork of [Armtreebank/Tokenizer](https://github.com/Armtreebank/Tokenizer) adapted for the vortan project.
 
 ## Documentation
 

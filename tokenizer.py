@@ -128,7 +128,21 @@ class Tokenizer:
     (6, u'\.{1}\n', 1),
   ]
   
-  TOKENIZATION_RULES = [
+  WORD_TOK_RULES = [
+    (11, u'[Ա-Ֆևа-яА-ЯЁёA-z]+-[ա-ֆև]+'), #ՀՀԿ-ական ( լավ չի, բայց ուրիշ օրինակ մտքիս չեկավ )
+    (13, u'[ա-ֆԱ-Ֆևև]+'), #simple word
+    (20, u'[ա-ֆԱ-Ֆևև]+[' + Punct.all(linear=True) + ']{1,3}'), #հեյ~(հե~յ)
+  ]
+
+
+  MISC_TOK_RULES = [
+    (8, u'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)'), #E-mail
+    (9, u'@[a-z0-9_-]{3,}'), #nickname @gor_ar
+    (10, u'[Ա-Ֆև]+[ա-ֆև]+-[Ա-Ֆև]+[ա-ֆև]+'), #Սայաթ-Նովա
+    (12, u'(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?'), #URL
+  ]
+
+  NUMBER_TOK_RULES = [
     (1, u'[' + Punct.inter() + ']'), # 5°С, $5, -5, +5
     (2, Punct.metric(double=True)), # 5կմ/ժ, 5մ/վ
     (3, u'[0-9]+-[ա-ֆԱ-Ֆևև]+'), #1-ին , 5-ական
@@ -138,18 +152,17 @@ class Tokenizer:
     (6, u'[0-9]+[\.|,|/]{1}[0-9]+'), #numbers 2.5 2,5 2/3
     (7, u'\.[0-9]+'), #numbers .5 , .08
     (7.1, u'[0-9]+'), #numbers 25
-    (8, u'([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)'), #E-mail
-    (9, u'@[a-z0-9_-]{3,}'), #nickname @gor_ar
-    (10, u'[Ա-Ֆև]+[ա-ֆև]+-[Ա-Ֆև]+[ա-ֆև]+'), #Սայաթ-Նովա
-    (11, u'[Ա-Ֆևа-яА-ЯЁёA-z]+-[ա-ֆև]+'), #ՀՀԿ-ական ( լավ չի, բայց ուրիշ օրինակ մտքիս չեկավ )
-    (12, u'(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?'), #URL
-    (20, u'[ա-ֆԱ-Ֆևև]+[' + Punct.all(linear=True) + ']{1,3}'), #հեյ~(հե~յ)
-    (13, u'[ա-ֆԱ-Ֆևև]+'), #simple word
-    (14, u'[a-zA-Z]+'), #english word 
-    (15, u'[а-яА-ЯЁё]+'), #russian word
-    (16, u'\.{3,4}'), #.... , ...
+  ]
+
+  PUNC_TOK_RULES = [
     (17, u'([' + Punct.all() + ']{1})'), #all punctuations
     (18, u'([' + Punct.all(linear=True) + ']{1})'), #all linear punctuations
+    (16, u'\.{3,4}'), #.... , ...
+  ]
+
+  FOREIGN_TOK_RULES = [
+    (14, u'[a-zA-Z]+'), #english word 
+    (15, u'[а-яА-ЯЁё]+'), #russian word
   ]
   
   SPECIAL_RULES = {
@@ -178,10 +191,19 @@ class Tokenizer:
     }, # հեյ~ => 1-2.հեյ~ 1.հեյ 2.~
   ]
     
-  def __init__(self, text):
+  def __init__(self, text, tok_punc=False, tok_foreign=False, tok_numb=False, tok_misc=False):
     self.text = text
     self.text_length = len(text)
     self.segments = []
+    self.tok_rules = Tokenizer.WORD_TOK_RULES
+    if tok_punc:
+        self.tok_rules += Tokenizer.PUNC_TOK_RULES
+    if tok_foreign:
+        self.tok_rules += Tokenizer.FOREIGN_TOK_RULES
+    if tok_numb:
+        self.tok_rules += Tokenizer.NUMBER_TOK_RULES
+    if tok_misc:
+        self.tok_rules += Tokenizer.MISC_TOK_RULES
    
   def __str__(self):
     return self.print_()
@@ -211,8 +233,8 @@ class Tokenizer:
     return False
 
   @classmethod
-  def find_token(cls, text, pointer):
-    for index, r in cls.TOKENIZATION_RULES:
+  def find_token(cls, text, pointer, tok_rules):
+    for index, r in tok_rules:
       token = re.match(r, text[pointer:])
       if token:
         for t_r in cls.SPECIAL_RULES['token']:
@@ -287,7 +309,7 @@ class Tokenizer:
           l += len(dict_word['word'])
         else:
           #Try to find a static rule
-          token = self.find_token(s['segment'], l)
+          token = self.find_token(s['segment'], l, self.tok_rules)
           if token:
             l += token.end()
             new_token = token.group(0)

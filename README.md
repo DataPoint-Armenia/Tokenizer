@@ -22,6 +22,14 @@ You can demo the tokenizer by modifying the string in `test.py` and running it:
 python3 test.py
 ```
 
+## Contributors
+
+-   [@sourencho](https://github.com/sourencho)
+
+## Acknowledgements
+
+- https://github.com/Armtreebank/Tokenizer
+
 # Original readme
 
 The low-level tokenization of the Eastern Armenian UD treebank follows the tokenization of the

@@ -11,7 +11,9 @@ A fork of [Armtreebank/Tokenizer](https://github.com/Armtreebank/Tokenizer) adap
 
 ## Changes
 
-- [[d870d29](https://github.com/sourencho/ungroup_game/commit/d870d299e596e6ec8c91feaf2effd789a7c49456)] Add option to not tokenize numbers, foreign words, punctuation and some misc stuff.
+- [[65e5655](https://github.com/DataPoint-Armenia/vortan_tokenizer/commit/65e5655ae06864d3ad03c86c1dbebf87b128e6b5)]
+  - Parse dialong with '—' punctuation properly
+- [[d870d29](https://github.com/DataPoint-Armenia/vortan_tokenizer/commit/d870d299e596e6ec8c91feaf2effd789a7c49456)] Add option to not tokenize numbers, foreign words, punctuation and some misc stuff.
   - Only words are tokenized by default.
   - The intent of this change is to use this tokenizer to parse out n-grams.
 

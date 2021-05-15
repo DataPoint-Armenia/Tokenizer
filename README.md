@@ -6,8 +6,7 @@ A fork of [Armtreebank/Tokenizer](https://github.com/Armtreebank/Tokenizer) adap
 
 ## Documentation
 
-- **Google Drive Folder**: [link](https://drive.google.com/drive/folders/1f1feyB_po6hS7TFvdvPWZ3Q6dSEDjklQ)
-- **Slack Channel**: [#vortan](https://datapointarmenia.slack.com/archives/C01LE2ADLFJ)
+- [vortan_docs](https://github.com/DataPoint-Armenia/vortan_docs)
 
 ## Changes
 

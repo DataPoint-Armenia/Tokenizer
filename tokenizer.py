@@ -126,6 +126,7 @@ class Tokenizer:
     #(4, u'([' + Punct.all() + ']\s*[' + Punct([5, 6]).regex() + ']+\s*[Ա-ֆևևA-zА-яЁё0-9]+)'), #, -
     (5, u'[' + Punct.all() + ']\s*[' + Punct(1).regex() + ']{1}\s*[Ա-ֆևևA-zА-яЁё0-9]+', 1), #. <<
     (6, u'\.{1}\n', 1),
+    (99, u'(' + Punct(':').regex() + ')\s*—[ ]?[Ա-ՖևA-ZА-ЯЁ]+', 1), #: — Ա (vortan)
   ]
   
   WORD_TOK_RULES = [

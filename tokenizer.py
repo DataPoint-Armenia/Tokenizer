@@ -302,6 +302,19 @@ class VortanTokenizer:
                 l += 1
         return self
 
+    # Added by vortan to be able to force add segmenets that aren't full sentences with stops
+    def add_segment(self, new_segment):
+        self.purification()
+
+        clean_segment = new_segment.rstrip().lstrip()
+        self.segments.append({
+            'segment': clean_segment,
+            'id': len(self.segments)+1,
+            'tokens': []
+        })
+
+        return self
+
     def tokenization(self):
         AbbreviationsDictionary = Dictionary('abbreviations.xml')
         for s in self.segments:

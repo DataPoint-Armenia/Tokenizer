@@ -10,6 +10,9 @@ A fork of [Armtreebank/Tokenizer](https://github.com/Armtreebank/Tokenizer) adap
 
 ## Changes
 
+- [[98ebb38f0]](https://github.com/DataPoint-Armenia/vortan_tokenizer/commit/98ebb38f05e54c1d2f9768f0f10d6a6126f17fe7)
+  - Add option to tokenize segment that's not a full sentence with a stop at the end
+
 - [[65e5655](https://github.com/DataPoint-Armenia/vortan_tokenizer/commit/65e5655ae06864d3ad03c86c1dbebf87b128e6b5)]
   - Parse dialong with '—' punctuation properly
 - [[d870d29](https://github.com/DataPoint-Armenia/vortan_tokenizer/commit/d870d299e596e6ec8c91feaf2effd789a7c49456)] Add option to not tokenize numbers, foreign words, punctuation and some misc stuff.
